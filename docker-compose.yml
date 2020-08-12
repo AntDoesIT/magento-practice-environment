@@ -1,0 +1,60 @@
+version: '3'
+services:
+  web_server:
+    build:
+      context: ./web_server/
+    container_name: apache2
+    volumes:
+      - ./magento2:/var/www/html
+      - ./web_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+      - ./web_server/composerinstall.sh:/etc/composerinstall.sh
+      - ./web_server/magentoinstall.sh:/etc/magentoinstall.sh
+      - ./web_server/auth.json:/var/www/html/auth.json
+    ports:
+      - "80:80"
+    links:
+      - database_server
+      - mailhog
+      - elasticsearch
+
+  database_server:
+    build:
+      context: ./database_server/
+      args:
+        - mysql_password=newpass
+        - mysql_database=magento
+    container_name: mysql
+    volumes:
+      - ./database_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+      - ./database_server/mysql.sh:/etc/mysql.sh
+    ports:
+      - "3306:3306"
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  elasticsearch:
+    build:
+        context: ./elasticsearch_server/
+    container_name: elasticsearch
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./elasticsearch_server/elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"

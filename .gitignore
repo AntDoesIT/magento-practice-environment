@@ -1,0 +1,7 @@
+# Magento Default Files    #
+#--------------------------#
+**/.DS_Store
+#/web_server/auth.json
+/PATCH_*.sh
+/app/etc/local.xml
+/media/*

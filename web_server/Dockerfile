@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 LABEL maintainer="Antoinette Mkwapatira <antdoesit@gmail.com>"
 
 RUN apt-get update \
-    && apt-get -y install apache2 nano mysql-client wget curl libmcrypt-dev vim zip unzip \
+    && apt-get -y install apt-utils apache2 nano mysql-client wget curl libmcrypt-dev vim zip unzip \
     && a2enmod rewrite \
     && a2enmod headers \
     && export LANG=en_US.UTF-8 \

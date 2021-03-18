@@ -13,7 +13,7 @@ RUN apt-get update \
     && apt-get install -y language-pack-en-base \
     && LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php \
     && apt-get update \
-    && apt-get -y install php7.4 php-pear php7.4-curl php7.4-intl php7.4-gd php7.4-common php7.4-dev php7.4-xml php7.4-xsl php7.4-mbstring php7.4-zip php7.4-xml php7.4-bz2 php7.4-calendar php7.4-exif php7.4-json php7.4-mysql php7.4-soap php7.4-fpm php7.4-bcmath libapache2-mod-php7.4 \
+    && apt-get -y install php7.4 php-pear php7.4-curl php7.4-intl php7.4-gd php7.4-common php7.4-dev php7.4-xsl php7.4-mbstring php7.4-zip php7.4-bz2 php7.4-calendar php7.4-exif php7.4-json php7.4-mysql php7.4-soap php7.4-fpm php7.4-bcmath libapache2-mod-php7.4 \
     && pecl install mcrypt \
     && phpenmod mcrypt \
     && sed -i -e"s/^memory_limit\s*=\s*128M/memory_limit = 1024M/" /etc/php/7.4/apache2/php.ini \

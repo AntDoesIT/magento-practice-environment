@@ -1,7 +1,24 @@
 #!/bin/sh
-
-composer create-project --repository-url=https://repo.magento.com/magento/project-community-edition=2.4
-php /var/www/html/bin/magento setup:install --base-url=http://localhost/ --db-host=mysql --db-name=magento --db-user=root --db-password=newpass --admin-firstname=Admin --admin-lastname=Admin --admin-email=antdoesit@gmail.com --admin-user=admin --admin-password=test123 --language=en_US --backend-frontname=admin --search-engine=elasticsearch7 --elasticsearch-host=elasticsearch --elasticsearch-port=9200
+# hey this file syncs!!!
+composer create-project magento/community-edition .
+php magento setup:install \
+  --admin-firstname=Admin \
+  --admin-lastname=Admin \
+  --admin-email=mike.rhoden@hanes.com \
+  --admin-user=admin \
+  --admin-password=password1 \
+  --base-url=http://magentodevbox.centralus.cloudapp.azure.com/ \
+  --db-host=mysql \
+  --db-name=magento \
+  --db-user=root \
+  --db-password=newpass \
+  --currency=USD \
+  --timezone=America/Chicago \
+  --language=en_US \
+  --use-rewrites=1 \
+  --search-engine=elasticsearch7 \
+  --elasticsearch-host=elasticsearch \
+  --elasticsearch-port=9200
 php /var/www/html/bin/magento deploy:mode:set developer
 php /var/www/html/bin/magento sampledata:deploy
 php /var/www/html/bin/magento setup:upgrade

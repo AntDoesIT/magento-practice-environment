@@ -9,7 +9,6 @@ services:
       - ./web_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
       - ./web_server/composerinstall.sh:/etc/composerinstall.sh
       - ./web_server/magentoinstall.sh:/etc/magentoinstall.sh
-      - ./web_server/auth.json:/var/www/html/auth.json
     ports:
       - "80:80"
     links:

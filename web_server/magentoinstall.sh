@@ -1,5 +1,5 @@
 #!/bin/sh
-# hey this file syncs!!!
+
 composer create-project magento/community-edition .
 php magento setup:install \
   --admin-firstname=Admin \
